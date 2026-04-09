@@ -19,7 +19,6 @@ st.sidebar.markdown("---")
 
 page = st.sidebar.selectbox("Navigate", ["Overview", "Data Exploration", "Customer Insights"])
 
-# GLOBAL FILTERS (applied everywhere now)
 st.sidebar.subheader("Filters")
 geography = st.sidebar.multiselect("Select Country", options = data["Geography"].unique(), default = data["Geography"].unique())
 gender = st.sidebar.multiselect("Select Gender", options = data["Gender"].unique(), default = data["Gender"].unique())
@@ -27,7 +26,6 @@ active_status = st.sidebar.multiselect("Active Member", options = [0, 1], defaul
 
 filtered_data = data[(data["Geography"].isin(geography)) & (data["Gender"].isin(gender)) & (data["IsActiveMember"].isin(active_status))]
 
-# ================= OVERVIEW =================
 if page == "Overview":
     st.header("Overview")
 
@@ -57,7 +55,6 @@ if page == "Overview":
     fig_geo.update_yaxes(tickformat = ".0%")
     st.plotly_chart(fig_geo, use_container_width = True)
 
-# ================= DATA EXPLORATION =================
 if page == "Data Exploration":
     st.header("Data Exploration")
 
@@ -74,7 +71,6 @@ if page == "Data Exploration":
     col2.metric("Churned", churned)
     col3.metric("Churn Rate (%)", round(churn_rate, 2))
 
-# ================= CUSTOMER INSIGHTS =================
 if page == "Customer Insights":
     st.header("Customer Insights")
 
